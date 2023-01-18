@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import getAllUsers from "./heroes-operations";
+import { getAllUsers } from "./users-operations";
 
 const initialState = {
   users: [],
@@ -11,13 +11,15 @@ const usersSlice = createSlice({
   name: "users",
   initialState,
   extraReducers: {
+    //get users
     [getAllUsers.pending]: (state) => {
+      state.users = [];
       state.isLoading = true;
       state.isError = null;
     },
 
     [getAllUsers.fulfilled]: (state, { payload }) => {
-      state.users = payload.users;
+      state.users = payload.data;
       state.isLoading = false;
     },
 
