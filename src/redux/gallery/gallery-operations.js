@@ -8,7 +8,6 @@ export const getUserGallery = createAsyncThunk(
       const response = await axios.get(
         `https://jsonplaceholder.typicode.com/users/${id}/albums`
       );
-      console.log(response);
       return response;
     } catch (error) {
       throw new Error(error);

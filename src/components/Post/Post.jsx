@@ -2,7 +2,6 @@ import React from "react";
 import s from "./Post.module.css";
 import { Text } from "../Text/Text";
 export const Post = ({ post }) => {
-  //   console.log(post);
   return (
     <div className={s.wrapper}>
       <Text>

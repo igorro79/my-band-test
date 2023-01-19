@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Dna } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-modal";
@@ -7,7 +7,6 @@ import { Container } from "../../components/Container/Container";
 import { Heading } from "../../components/Heading/Heading";
 import { UserCard } from "../../components/UserCard/UserCard";
 
-import { getAllUsers } from "../../redux/users/users-operations";
 import { getUserGallery } from "../../redux/gallery/gallery-operations";
 import { usersSelectors } from "../../redux/users/users-selectors";
 import { gallerySelectors } from "../../redux/gallery/gallery-selectors";
@@ -30,17 +29,13 @@ export const Home = () => {
   function closeModal() {
     setIsOpen(false);
   }
-  useEffect(() => {
-    if (!users.length) dispatch(getAllUsers());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
 
   return (
     <main ref={ref}>
       <Container>
         <Heading tag="h2">Users</Heading>
 
-        {!users.length ? (
+        {users.length === 0 ? (
           <div className={s.loaderWrapper}>
             <Dna
               visible={true}
@@ -53,10 +48,9 @@ export const Home = () => {
           </div>
         ) : (
           <div className={s.wrapper}>
-            {users.length &&
-              users.map((user) => (
-                <UserCard openModal={openModal} key={user.id} user={user} />
-              ))}
+            {users.map((user) => (
+              <UserCard openModal={openModal} key={user.id} user={user} />
+            ))}
           </div>
         )}
 
@@ -88,7 +82,7 @@ export const Home = () => {
                 />
                 <ul style={{ listStyleType: "circle", paddingLeft: "20px" }}>
                   {albums.map((item) => (
-                    <li>{item.title}</li>
+                    <li key={item.id}>{item.title}</li>
                   ))}
                 </ul>
               </div>

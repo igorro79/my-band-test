@@ -24,11 +24,11 @@ export const UserCard = ({ user, openModal }) => {
         <b>Website:</b> {user.website}
       </Text>
       <ul className={s.buttonWrapper}>
-        <li className={s.items}>
+        <li  className={s.items}>
           <Button link={`users/${user.id}/posts`}>Posts</Button>
         </li>
         <li className={s.items}>
-          <Button onClick={() => openModal(user.id)}>Gallery</Button>
+          <Button onClick={() => openModal(user.id)}>Albums</Button>
         </li>
       </ul>
     </div>
