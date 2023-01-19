@@ -1,14 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getUserPosts = createAsyncThunk(
-  "posts/getUserPosts",
-  async (id, thunkAPI) => {
-    const { users } = await thunkAPI.getState();
-    console.log(users.users);
+export const getUserGallery = createAsyncThunk(
+  "gallery/getUserGallery",
+  async (id) => {
     try {
       const response = await axios.get(
-        `https://jsonplaceholder.typicode.com/users/${id}/posts`
+        `https://jsonplaceholder.typicode.com/users/${id}/albums`
       );
       console.log(response);
       return response;

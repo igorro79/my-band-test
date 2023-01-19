@@ -6,8 +6,14 @@ import s from "./UserCard.module.css";
 export const UserCard = ({ user, openModal }) => {
   return (
     <div className={s.wrapper}>
-      <img src={user.image} alt={user.name} />
-      <h3>{user.name}</h3>
+      <h3>{user.name}</h3>{" "}
+      <hr
+        style={{
+          background: "rgb(3, 3, 110)",
+          width: "100%",
+          height: "2px",
+        }}
+      />
       <Text>
         <b>E-mail:</b> {user.email}
       </Text>
@@ -17,10 +23,14 @@ export const UserCard = ({ user, openModal }) => {
       <Text>
         <b>Website:</b> {user.website}
       </Text>
-      <div className={s.buttonWrapper}>
-        <Button link={`users/${user.id}/posts`}>Posts</Button>
-        <Button onClick={openModal}>Gallery</Button>
-      </div>
+      <ul className={s.buttonWrapper}>
+        <li className={s.items}>
+          <Button link={`users/${user.id}/posts`}>Posts</Button>
+        </li>
+        <li className={s.items}>
+          <Button onClick={() => openModal(user.id)}>Gallery</Button>
+        </li>
+      </ul>
     </div>
   );
 };

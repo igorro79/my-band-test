@@ -11,7 +11,6 @@ const postsSlice = createSlice({
   name: "posts",
   initialState,
   extraReducers: {
-    // get user posts
     [getUserPosts.pending]: (state) => {
       state.posts = [];
       state.isLoading = true;
@@ -21,9 +20,11 @@ const postsSlice = createSlice({
     [getUserPosts.fulfilled]: (state, { payload }) => {
       state.posts = payload.data;
       state.isLoading = false;
+      state.isError = null;
     },
 
     [getUserPosts.rejected]: (state, { payload }) => {
+      state.posts = [];
       state.isLoading = false;
       state.isError = payload;
     },

@@ -7,7 +7,7 @@ import { Posts } from "./pages/Posts/Posts";
 
 function App() {
   return (
-    <div>
+    <div id="app">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
